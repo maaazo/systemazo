@@ -1,4 +1,7 @@
-<p style="color: green"><%= notice %></p>
+
+<div>
+  <%= link_to "Back home", root_path %>
+</div>
 
 <div>
   <p><strong>Name:</strong> <%= @company.name %></p>
@@ -9,6 +12,50 @@
 </div>
 
 <div>
-  <%= link_to "Edit this company", edit_company_path(@company) %> |
-  <%= link_to "Back home", root_path %>
+  <%= link_to "Edit Company", edit_company_path(@company) %>
+</div>
+<br>
+<hr>
+<br>
+
+<div>
+  <h2>Memberships:</h2>
+  
+  <h3>Owners:</h3>
+  <% if @owners.any? %>
+    <% @owners.each do |membership| %>
+      <p>
+        <%= membership.user.email %> - 
+        <%= link_to "Edit", edit_membership_path(membership) %>
+      </p>
+    <% end %>
+  <% else %>
+    <p>No owners found.</p>
+  <% end %>
+
+  <h3>Employees:</h3>
+  <% if @employees.any? %>
+    <% @employees.each do |membership| %>
+      <p><%= membership.user.email %> - 
+        <%= link_to "Edit", edit_membership_path(membership) %>
+      </p>
+    <% end %>
+  <% else %>
+    <p>No employees found.</p>
+  <% end %>
+
+  <h3>Clients:</h3>
+  <% if @clients.any? %>
+    <% @clients.each do |membership| %>
+      <p><%= membership.user.email %> - 
+        <%= link_to "Edit", edit_membership_path(membership) %>
+      </p>
+    <% end %>
+  <% else %>
+    <p>No clients found.</p>
+  <% end %>
+</div>
+
+<div>
+  <%= link_to "Add New Membership", new_membership_path(company_id: @company.id) %>
 </div>
