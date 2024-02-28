@@ -1,0 +1,23 @@
+
+<h1>Add Membership</h1>
+
+<%= form_with(model: @membership, url: memberships_path, method: :post) do |f| %>
+  <div class="field">
+    <%= f.label :company_id, "Select Company" %><br>
+    <%= f.collection_select :company_id, Company.all, :id, :name, prompt: "Select Company" %><br><br>
+
+    <%= f.label :user_id, "Select User" %><br>
+    <%= f.collection_select :user_id, User.all, :id, :email, prompt: "Select User" %><br><br>
+  
+    <%= f.label :role, "Select Role" %><br>
+    <%= f.select :role, ['client', 'employee', 'owner'], prompt: "Select Role" %><br><br>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Add Membership" %>
+  </div>
+  <br>
+  <div>
+    <%= link_to "Back Home", root_path %>
+  </div>
+<% end %>
