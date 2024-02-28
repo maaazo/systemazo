@@ -4,3 +4,19 @@
   <%= button_to "Sign in", new_user_session_path %> 
 <% end %>
 <h1>Hello <%= current_user.first_name %>!</h1>
+
+<% if @owned_companies.any? %>
+  <div class="owned-companies">
+    <h2>Companies you own:</h2>
+    <ul>
+      <% @owned_companies.each do |company| %>
+        <li><%= link_to company.name, company %></li>
+      <% end %>
+    </ul>
+  </div>
+<% else %>
+  <p>You don't own any companies yet.</p>
+<% end %>
+
+<br>
+<%= button_to "Create New Company", new_company_path, method: :get %>
