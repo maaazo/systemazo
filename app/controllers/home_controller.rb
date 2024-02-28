@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    render
+    @owned_companies = current_user.owned_companies
   end
 end

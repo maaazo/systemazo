@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<div>
+  <p><strong>Name:</strong> <%= @company.name %></p>
+  <p><strong>Phone Number:</strong> <%= @company.phone_number %></p>
+  <p><strong>Address:</strong> <%= @company.address %></p>
+  <p><strong>City:</strong> <%= @company.city %></p>
+  <p><strong>Country:</strong> <%= @company.country %></p>
+</div>
+
+<div>
+  <%= link_to "Edit this company", edit_company_path(@company) %> |
+  <%= link_to "Back home", root_path %>
+</div>
