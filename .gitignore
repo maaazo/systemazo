@@ -33,3 +33,10 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore byebug history
+.byebug_history
+
+# Ignore .ds_store file
+.DS_Store
+
