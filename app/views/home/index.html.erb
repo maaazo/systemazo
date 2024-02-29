@@ -17,6 +17,23 @@
 <% else %>
   <p>You don't own any companies yet.</p>
 <% end %>
-
 <br>
 <%= button_to "Create New Company", new_company_path, method: :get %>
+<br>
+<hr>
+<% if @appointments.any? %>
+  <div>
+    <h2>Your Appointments:</h2>
+    <ul>
+      <% @appointments.each do |appointment| %>
+        <li><%= link_to appointment.appointment_time, appointment %>
+      <% end %>
+    </ul>
+<% else %>
+  <p>You don't have any appointment.
+<% end %>    
+  </div>
+
+
+<br>
+<%= button_to "Create New Appointment", new_appointment_path, method: :get %>

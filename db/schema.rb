@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_28_184251) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_28_235034) do
+  create_table "appointments", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "company_id", null: false
+    t.datetime "appointment_time", null: false
+    t.string "status"
+    t.integer "duration", limit: 4
+    t.float "price", limit: 24
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_appointments_on_company_id"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
+  end
+
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.string "phone_number"
@@ -53,6 +66,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_28_184251) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "appointments", "companies"
+  add_foreign_key "appointments", "users"
   add_foreign_key "memberships", "companies"
   add_foreign_key "memberships", "users"
 end
