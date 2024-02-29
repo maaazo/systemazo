@@ -1,0 +1,30 @@
+<h1>Edit Appointment</h1>
+
+<%= form_with(model: @appointment, url: appointment_path(@appointment), method: :patch) do |f| %>
+  <div class="field">
+    <%= f.label :company_id, "Select Company" %><br>
+    <%= f.collection_select :company_id, Company.all, :id, :name, selected: @appointment.company_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_id, "Select User" %><br>
+    <%= f.collection_select :user_id, User.all, :id, :email, selected: @appointment.user_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :appointment_time %><br>
+    <%= f.datetime_field :appointment_time, value: @appointment.appointment_time %>
+  </div>
+
+  <div class="field">
+    <%= f.label :duration %><br>
+    <%= f.select :duration, options_for_select(@duration_options, @appointment.duration) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update Appointment" %>
+  </div>
+  <div>
+    <%= link_to "Back Home", root_path  %>
+  </div>
+<% end %>

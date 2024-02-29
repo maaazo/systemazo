@@ -1,0 +1,30 @@
+<!-- app/views/appointments/new.html.erb -->
+
+<h1>New Appointment</h1>
+
+<%= form_with(model: @appointment, url: appointments_path, method: :post) do |f| %>
+  <div class="field">
+    <%= f.label :appointment_time %><br>
+    <%= f.datetime_field :appointment_time %>
+  </div>
+
+  <div class="field">
+    <%= f.label :company_id, "Select Company" %><br>
+    <%= f.collection_select :company_id, Company.all, :id, :name, prompt: "Select Company", required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_id, "Select User" %><br>
+    <%= f.collection_select :user_id, User.all, :id, :email, prompt: "Select User", required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :duration %><br>
+    <%= f.select :duration, options_for_select(@duration_options, @appointment.duration), required: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Create Appointment" %>
+  </div>
+  <%= link_to "Back Home", root_path %>
+<% end %>

@@ -1,0 +1,7 @@
+<h1>Appointment Details</h1>
+
+<p><strong>Company:</strong> <%= @appointment.company.name %></p>
+<p><strong>Date:</strong> <%= @appointment.appointment_time.strftime("%Y-%m-%d %H:%M:%S") %></p>
+
+<%= link_to "Edit", edit_appointment_path %>
+<%= link_to "Back Home", root_path %>
