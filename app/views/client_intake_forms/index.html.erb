@@ -1,0 +1,18 @@
+
+<h1>Client intake forms</h1>
+
+<%= button_to "New client intake form", new_client_intake_form_path, method: :get %>
+
+<br><br><hr><br>
+
+<div id="client_intake_forms">
+  <% @client_intake_forms.each do |client_intake_form| %>
+    <%= render client_intake_form %>
+    <p>
+      <%= link_to "Show this client intake form", client_intake_form %>
+    </p>
+    <br><hr><br>
+  <% end %>
+  
+</div>
+

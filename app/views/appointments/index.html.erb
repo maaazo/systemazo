@@ -10,7 +10,7 @@
       <li><strong>Duration:</strong> <%= appointment.duration %> minutes</li>
       <li><strong>Price:</strong> <%= appointment.price %></li>
       <li><%= link_to "Edit", edit_appointment_path(appointment) %></li>
-      <li><%= button_to "Delete", appointment, method: :delete, data: { confirm: "Are you sure you want to delete this appointment?" } %></li>
+      <li><%= button_to "Delete", appointment, method: :delete, data: { turbo_confirm: "Are you sure you want to delete this appointment?" } %></li>
     </ul>
   <% end %>
 <% else %>

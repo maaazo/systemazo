@@ -34,6 +34,6 @@ class CompaniesTest < ApplicationSystemTestCase
     visit company_url(@company)
     click_on "Destroy this company", match: :first
 
-    assert_text "Company was successfully destroyed"
+    assert_text "Company was successfully deleted"
   end
 end

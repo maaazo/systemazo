@@ -45,7 +45,7 @@ class AppointmentsController < ApplicationController
 
   def destroy
     @appointment.destroy
-    redirect_to appointments_url, notice: 'Appointment was successfully destroyed.'
+    redirect_to appointments_url, notice: 'Appointment was successfully deleted.'
   end
 
   private

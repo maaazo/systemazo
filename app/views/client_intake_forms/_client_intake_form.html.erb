@@ -1,0 +1,69 @@
+<div id="<%= dom_id(client_intake_form) %>">
+  <div class="field">
+    <strong>Company:</strong> <%= client_intake_form.company.name %>
+  </div>
+  
+  <div class="field">
+    <strong>User:</strong>
+    <% if client_intake_form.user %>
+      <%= "#{client_intake_form.user_id} - #{client_intake_form.user.email}" %>
+    <% else %>
+      <em>
+        No user associated with this client intake form.
+        <%= link_to "Edit", edit_client_intake_form_path(@client_intake_form) %>
+      </em>
+    <% end %>
+    </div>
+
+  <div class="field">
+    <strong>First name:</strong> <%= client_intake_form.first_name %>
+  </div>
+  
+  <div class="field">
+    <strong>Last name:</strong> <%= client_intake_form.last_name %>
+  </div>
+  
+  <div class="field">
+    <strong>Preferred name:</strong> <%= client_intake_form.preferred_name %>
+  </div>
+    
+  <div class="field">
+    <strong>Email address:</strong> <%= client_intake_form.email_address %>
+  </div>
+
+  <div class="field">
+    <strong>Gender:</strong> <%= client_intake_form.gender %>
+  </div>
+  
+  <div class="field">
+    <strong>Phone number:</strong> <%= client_intake_form.phone_number %>
+  </div>
+  
+  <div class="field">
+    <strong>Date of birth:</strong> <%= client_intake_form.date_of_birth %>
+  </div>
+  
+  <div class="field">
+    <strong>Address:</strong> <%= client_intake_form.address %>
+  </div>
+  
+  <div class="field">
+    <strong>City:</strong> <%= client_intake_form.city %>
+  </div>
+  
+  <div class="field">
+    <strong>Province:</strong> <%= client_intake_form.province %>
+  </div>
+  
+  <div class="field">
+    <strong>Country:</strong> <%= client_intake_form.country %>
+  </div>
+  
+  <div class="field">
+    <strong>Alternate phone number:</strong> <%= client_intake_form.alternate_phone_number %>
+  </div>
+  
+  <div class="field">
+    <strong>Additional info:</strong> <%= client_intake_form.additional_info %>
+  </div>
+</div>

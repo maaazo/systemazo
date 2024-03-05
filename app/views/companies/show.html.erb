@@ -4,7 +4,7 @@
 </div>
 
 <div>
-  <p><strong>Name:</strong> <%= @company.name %></p>
+  <h2><%= @company.name %></h2>
   <p><strong>Phone Number:</strong> <%= @company.phone_number %></p>
   <p><strong>Address:</strong> <%= @company.address %></p>
   <p><strong>City:</strong> <%= @company.city %></p>
@@ -58,4 +58,27 @@
 
 <div>
   <%= link_to "Add New Membership", new_membership_path(company_id: @company.id) %>
+</div>
+
+<br>
+<hr>
+<br>
+
+<div>
+  <h2>Client intake forms:</h2>
+  <% if @client_intake_forms.any? %>
+    <ul>
+      <% @client_intake_forms.each do |form| %>
+        <li>
+          <%= link_to "##{form.id} - #{form.first_name} #{form.last_name}", client_intake_form_path(form) %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No clients form found.</p>
+  <% end %>
+</div>
+
+<div>
+  <%= link_to "Add New Client", new_client_intake_form_path(company_id: @company.id) %>
 </div>

@@ -1,0 +1,10 @@
+<h1>Client Intake Form - #<%= @client_intake_form.id %></h1>
+
+<%= render @client_intake_form %>
+
+<div>
+  <br><br>
+  <%= link_to "Edit Form", edit_client_intake_form_path(@client_intake_form) %> |
+  <%= link_to "Back to Company", company_path(@client_intake_form.company_id) %><br><br>
+  <%= button_to "Delete Form", @client_intake_form, method: :delete, data: { turbo_confirm: "Are you sure you want to delete the form?" }  %>
+</div>
