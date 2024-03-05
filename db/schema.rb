@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_28_235034) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_04_214407) do
   create_table "appointments", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "company_id", null: false
@@ -22,6 +22,28 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_28_235034) do
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_appointments_on_company_id"
     t.index ["user_id"], name: "index_appointments_on_user_id"
+  end
+
+  create_table "client_intake_forms", force: :cascade do |t|
+    t.integer "company_id", null: false
+    t.integer "user_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "preferred_name"
+    t.string "email_address"
+    t.string "gender"
+    t.string "phone_number"
+    t.date "date_of_birth"
+    t.string "address"
+    t.string "city"
+    t.string "province"
+    t.string "country"
+    t.string "alternate_phone_number"
+    t.text "additional_info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_client_intake_forms_on_company_id"
+    t.index ["user_id"], name: "index_client_intake_forms_on_user_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -68,6 +90,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_28_235034) do
 
   add_foreign_key "appointments", "companies"
   add_foreign_key "appointments", "users"
+  add_foreign_key "client_intake_forms", "companies"
+  add_foreign_key "client_intake_forms", "users"
   add_foreign_key "memberships", "companies"
   add_foreign_key "memberships", "users"
 end
