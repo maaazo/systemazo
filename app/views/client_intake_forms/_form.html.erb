@@ -1,0 +1,99 @@
+<%= form_with(model: client_intake_form) do |form| %>
+  <% if client_intake_form.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(client_intake_form.errors.count, "error") %> prohibited this client_intake_form from being saved:</h2>
+
+      <ul>
+        <% client_intake_form.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <div class="field">
+    <%= form.label :company_id %>
+    <% if @companies.any? %>
+      <%= form.select :company_id, options_for_select(@companies.map { |company| [company.name, company.id] }, selected_company_id(client_intake_form, @company_id)), {}, { class: 'form-control' } %>
+    <% else %>
+      <%= form.select :company_id, {}, {}, { class: 'form-control', disabled: true } %>
+      <p class="text-muted">You don't have any companies.</p>
+    <% end %>
+  </div>
+
+<div class="field">
+  <%= form.label :user_id %>
+  <% options = [['No User', '']] + @users.map { |user| [user.email, user.id] } %>
+  <%= form.select :user_id, options_for_select(options, selected: client_intake_form.user_id), required: true %>
+</div>
+
+  <div class="field">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :preferred_name %>
+    <%= form.text_field :preferred_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email_address %>
+    <%= form.text_field :email_address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gender %>
+    <%= form.select :gender, options_for_select(['Male', 'Female', 'Other'], selected: client_intake_form.gender), { prompt: 'Select Gender' } %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :alternate_phone_number %>
+    <%= form.text_field :alternate_phone_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_of_birth %>
+    <%= form.date_field :date_of_birth %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :province %>
+    <%= form.text_field :province %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country %>
+    <%= form.text_field :country %>
+  </div>
+
+  <div class="field">
+    <%= form.label :additional_info %><br>
+    <%= form.text_area :additional_info %>
+  </div>
+
+<br>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

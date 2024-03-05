@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :memberships
   has_many :companies, through: :memberships
+  has_many :client_intake_forms
 
   has_many :appointments
 

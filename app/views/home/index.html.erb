@@ -21,19 +21,34 @@
 <%= button_to "Create New Company", new_company_path, method: :get %>
 <br>
 <hr>
+<h2>Your Appointments:</h2>
 <% if @appointments.any? %>
   <div>
-    <h2>Your Appointments:</h2>
     <ul>
       <% @appointments.each do |appointment| %>
         <li><%= link_to appointment.appointment_time, appointment %>
       <% end %>
     </ul>
-<% else %>
-  <p>You don't have any appointment.
-<% end %>    
   </div>
+<% else %>
+  <p>You don't have any appointment.</p>
+<% end %>
+<%= button_to "Create New Appointment", new_appointment_path, method: :get %>
+
+<br><hr><br>
+
+<h2>Companies you have a client intake form record:</h2>
+<% if @client_intake_forms.any? %>
+  <div>
+    <ul>
+      <% @client_intake_forms.each do |client_intake_form| %>
+        <li><%= link_to client_intake_form.company.name, client_intake_form.company %></li>
+      <% end %>
+    </ul>
+  </div>
+<% else %>
+  <p>You don't have any client intake forms associated with companies.</p>
+<% end %>
 
 
 <br>
-<%= button_to "Create New Appointment", new_appointment_path, method: :get %>

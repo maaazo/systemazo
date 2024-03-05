@@ -13,6 +13,7 @@ class CompaniesController < ApplicationController
     @owners = @company.memberships.where(role: 'owner')
     @employees = @company.memberships.where(role: 'employee')
     @clients = @company.memberships.where(role: 'client')
+    @client_intake_forms = @company.client_intake_forms
   end
 
   # GET /companies/new
@@ -60,7 +61,7 @@ class CompaniesController < ApplicationController
     @company.destroy!
 
     respond_to do |format|
-      format.html { redirect_to companies_url, notice: 'Company was successfully destroyed.' }
+      format.html { redirect_to companies_url, notice: 'Company was successfully deleted.' }
       format.json { head :no_content }
     end
   end
