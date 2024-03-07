@@ -1,13 +1,18 @@
-<h1>All Companies</h1>
+<div class="container">
+  <h1>Your Companies</h1>
 
-<div id="companies">
-  <% @companies.each do |company| %>
-    <p>
-      <ul>
-        <li><%= link_to company.name, company %></li>
-      </ul>
-    </p>
-  <% end %>
+  <!-- Companies List -->
+  <div id="companies" class="p-3 mb-4">
+    <% @companies.each do |company| %>
+      <div class="mb-3">
+        <%= link_to company.name, company, class: "btn btn-outline-primary" %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- New Company Button -->
+  <div class="">
+    <%= link_to "New Company", new_company_path, class: "btn btn-primary" %>
+    <%= link_to "Back Home", root_path, class: "btn btn-secondary" %>
+  </div>
 </div>
-
-<%= link_to "New company", new_company_path %>
