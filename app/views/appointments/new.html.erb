@@ -1,11 +1,9 @@
-<!-- app/views/appointments/new.html.erb -->
-
 <h1>New Appointment</h1>
 
 <%= form_with(model: @appointment, url: appointments_path, method: :post) do |f| %>
   <div class="field">
     <%= f.label :appointment_time %><br>
-    <%= f.datetime_field :appointment_time %>
+    <%= f.datetime_field :appointment_time, min: Time.now.strftime("%Y-%m-%dT%H:%M") %>
   </div>
 
   <div class="field">
