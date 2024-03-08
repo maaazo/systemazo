@@ -3,13 +3,15 @@ class User < ApplicationRecord
   has_many :companies, through: :memberships
   has_many :client_intake_forms
   has_many :employment_application_forms
-
   has_many :appointments
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  validates :date_of_birth, presence: true
+  validate :user_must_be_adult
 
   def owned_companies
     companies.where(memberships: { role: 'owner' })
@@ -30,5 +32,13 @@ class User < ApplicationRecord
     )
     new_user.save
     new_user
+  end
+
+  private
+
+  def user_must_be_adult
+    return unless date_of_birth.present? && date_of_birth > 18.years.ago.to_date
+
+    errors.add(:date_of_birth, 'must be at least 18 years ago')
   end
 end
