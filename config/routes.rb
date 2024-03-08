@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :client_intake_forms
   resources :companies
   resources :memberships, only: %i[new create edit patch update]
+  resources :employment_application_forms, path: "employees"
 end

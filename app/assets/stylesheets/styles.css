@@ -2,6 +2,6 @@ body {
   margin-top: 20px; /* Add 20px margin to the top of the body */
 }
 
-.client-intake-form:hover {
+.client-intake-form:hover, .employment-application-form:hover{
   background-color: rgba(9, 3, 124, 0.049);
 }

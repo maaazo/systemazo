@@ -1,0 +1,53 @@
+<%= form_with(model: employment_application_form) do |form| %>
+  <% if employment_application_form.errors.any? %>
+   <div class="alert alert-danger">
+      <h2><%= pluralize(employment_application_form.errors.count, "error") %> prohibited this employment application form from being saved:</h2>
+
+      <ul>
+        <% employment_application_form.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :company_id, class: "form-label" %>
+    <% if @companies.any? %>
+      <%= form.select :company_id, options_for_select(@companies.map { |company| [company.name, company.id] }, selected_company_id(employment_application_form, @company_id)), {}, class: "form-select" %>
+    <% else %>
+      <%= form.select :company_id, {}, {}, class: "form-select", disabled: true %>
+      <p class="text-muted">You don't have any companies.</p>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :user_id, class: "form-label" %>
+    <% options = @users.map { |user| [user.email, user.id] } %>
+    <%= form.select :user_id, options_for_select(options, selected: employment_application_form.user_id), { required: true }, class: "form-select" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :preferred_name, class: "form-label" %>
+    <%= form.text_field :preferred_name, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :gender, class: "form-label" %>
+    <%= form.select :gender, options_for_select(['Male', 'Female', 'Other'], selected: employment_application_form.gender), { prompt: 'Select Gender' }, class: "form-select" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :alternate_phone_number, class: "form-label" %>
+    <%= form.text_field :alternate_phone_number, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :additional_info, class: "form-label" %><br>
+    <%= form.text_area :additional_info, class: "form-control" %>
+  </div>
+
+  <%= form.submit "Save", class: "btn btn-primary" %>
+  <%= link_to "Cancel", @employment_application_form, class: "btn btn-secondary ms-2" %>
+<% end %>
+
