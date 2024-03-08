@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_04_214407) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_08_184513) do
   create_table "appointments", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "company_id", null: false
@@ -56,6 +56,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_04_214407) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "employment_application_forms", force: :cascade do |t|
+    t.integer "company_id", null: false
+    t.integer "user_id", null: false
+    t.boolean "company_owner"
+    t.string "preferred_name"
+    t.string "gender"
+    t.string "alternate_phone_number"
+    t.text "additional_info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_employment_application_forms_on_company_id"
+    t.index ["user_id"], name: "index_employment_application_forms_on_user_id"
+  end
+
   create_table "memberships", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "company_id", null: false
@@ -92,6 +106,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_04_214407) do
   add_foreign_key "appointments", "users"
   add_foreign_key "client_intake_forms", "companies"
   add_foreign_key "client_intake_forms", "users"
+  add_foreign_key "employment_application_forms", "companies"
+  add_foreign_key "employment_application_forms", "users"
   add_foreign_key "memberships", "companies"
   add_foreign_key "memberships", "users"
 end

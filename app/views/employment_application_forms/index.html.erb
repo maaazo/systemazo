@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Employees</h1>
+    </div>
+  </div>
+
+  <%= link_to "Add", new_employment_application_form_path, class: "btn btn-primary mb-3" %>
+  <%= link_to "Back Home", root_path, class: "btn btn-secondary mb-3" %>
+
+  <div class="row">
+    <div class="col">
+      <% if @employment_application_forms.present? %>
+        <% @employment_application_forms.each do |employment_application_form| %>
+          <div class="mb-4 border p-3 employment-application-form" style="cursor: pointer;" onclick="window.location='<%= employment_application_form_path(employment_application_form) %>';">
+            <%= render employment_application_form %>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="border p-5">
+          <p><em>No employees found.</em></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

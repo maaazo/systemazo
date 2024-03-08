@@ -48,7 +48,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <div class="card">
+      <div class="card mb-3">
         <div class="card-body">
           <h2 class="card-title">Companies you have a client intake form record:</h2>
           <% if @client_intake_forms.any? %>
@@ -58,7 +58,26 @@
               <% end %>
             </ul>
           <% else %>
-            <p class="empty-message">You don't have any client intake forms associated with companies.</p>
+            <p class="empty-message border p-3"><em>You don't have any client intake forms associated with companies.</em></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">You are working at:</h2>
+          <% if @employment_application_forms.any? %>
+            <ul class="list-group md-3">
+              <% @employment_application_forms.each do |employment_application_form| %>
+                <li class="list-group-item"><%= link_to employment_application_form.company.name, employment_application_form %></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="empty-message border p-3"><em>You don't have any employment application forms.</em></p>
           <% end %>
         </div>
       </div>

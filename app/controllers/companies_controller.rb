@@ -14,6 +14,7 @@ class CompaniesController < ApplicationController
     @employees = @company.memberships.where(role: 'employee')
     @clients = @company.memberships.where(role: 'client')
     @client_intake_forms = @company.client_intake_forms
+    @employment_application_forms = @company.employment_application_forms.includes(:user)
   end
 
   # GET /companies/new
