@@ -37,10 +37,12 @@ class AppointmentsController < ApplicationController
 
   def update
     if @appointment.update(appointment_params)
-      redirect_to @appointment, notice: 'Appointment was successfully updated.'
+      notice_msg = 'Appointment was successfully updated.'
     else
-      render :edit
+      @duration_options = duration_options
+      notice_msg = @appointment.errors.full_messages.join('. ')
     end
+    redirect_to @appointment, notice: notice_msg
   end
 
   def destroy

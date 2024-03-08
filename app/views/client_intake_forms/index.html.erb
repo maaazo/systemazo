@@ -1,18 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Client Intake Forms</h1>
+    </div>
+  </div>
 
-<h1>Client intake forms</h1>
+  <%= link_to "New Client Intake Form", new_client_intake_form_path, class: "btn btn-primary mb-3" %>
+  <%= link_to "Back Home", root_path, class: "btn btn-secondary mb-3" %>
 
-<%= button_to "New client intake form", new_client_intake_form_path, method: :get %>
-
-<br><br><hr><br>
-
-<div id="client_intake_forms">
-  <% @client_intake_forms.each do |client_intake_form| %>
-    <%= render client_intake_form %>
-    <p>
-      <%= link_to "Show this client intake form", client_intake_form %>
-    </p>
-    <br><hr><br>
-  <% end %>
-  
+  <div class="row">
+    <div class="col">
+      <% @client_intake_forms.each do |client_intake_form| %>
+        <div class="mb-4 border p-3 client-intake-form" style="cursor: pointer;" onclick="window.location='<%= client_intake_form_path(client_intake_form) %>';">
+          <%= render client_intake_form %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-

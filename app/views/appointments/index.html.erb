@@ -1,18 +1,32 @@
-<h1>Your Appointments</h1>
+<div class="container">
+  <!-- Back Home Button -->
+  <div class="text-end mb-2">
+    <%= link_to "Back Home", root_path, class: "btn btn-secondary" %>
+  </div>
 
-<% if @appointments.any? %>
-  <% @appointments.each do |appointment| %>
-    <ul>
-      <li><strong>Company:</strong> <%= appointment.company.name %></li>
-      <li><strong>User:</strong> <%= appointment.user.email %></li>
-      <li><strong>Date and Time:</strong> <%= appointment.appointment_time.strftime("%Y-%m-%d %H:%M:%S") %></li>
-      <li><strong>Status:</strong> <%= appointment.status %></li>
-      <li><strong>Duration:</strong> <%= appointment.duration %> minutes</li>
-      <li><strong>Price:</strong> <%= appointment.price %></li>
-      <li><%= link_to "Edit", edit_appointment_path(appointment) %></li>
-      <li><%= button_to "Delete", appointment, method: :delete, data: { turbo_confirm: "Are you sure you want to delete this appointment?" } %></li>
-    </ul>
-  <% end %>
-<% else %>
-  <p>No appointments found.</p>
-<% end %>
+  <!-- Your Appointments -->
+  <div class="mb-4 border p-3">
+    <h1>Your Appointments</h1>
+
+    <% if @appointments.any? %>
+      <% @appointments.each do |appointment| %>
+        <div class="mb-4">
+          <ul class="list-unstyled">
+            <li><strong>Company:</strong> <%= appointment.company.name %></li>
+            <li><strong>User:</strong> <%= appointment.user.email %></li>
+            <li><strong>Date and Time:</strong> <%= appointment.appointment_time.strftime("%Y-%m-%d %H:%M:%S") %></li>
+            <li><strong>Status:</strong> <%= appointment.status %></li>
+            <li><strong>Duration:</strong> <%= appointment.duration %> minutes</li>
+            <li><strong>Price:</strong> <%= appointment.price %></li>
+          </ul>
+          <div class="btn-group mt-2" role="group">
+            <%= link_to "Edit", edit_appointment_path(appointment), class: "btn btn-secondary me-2" %>
+            <%= button_to "Delete", appointment, method: :delete, data: { turbo_confirm: "Are you sure you want to delete this appointment?" }, class: "btn btn-danger" %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p>No appointments found.</p>
+    <% end %>
+  </div>
+</div>

@@ -1,30 +1,37 @@
-<!-- app/views/appointments/new.html.erb -->
-
-<h1>New Appointment</h1>
-
-<%= form_with(model: @appointment, url: appointments_path, method: :post) do |f| %>
-  <div class="field">
-    <%= f.label :appointment_time %><br>
-    <%= f.datetime_field :appointment_time %>
+<div class="container">
+  <!-- Back Home Button -->
+  <div class="text-end mb-4">
+    <%= link_to "Back Home", root_path, class: "btn btn-secondary" %>
   </div>
 
-  <div class="field">
-    <%= f.label :company_id, "Select Company" %><br>
-    <%= f.collection_select :company_id, Company.all, :id, :name, prompt: "Select Company", required: true %>
+  <!-- New Appointment Form -->
+  <div class="mb-4 border p-3">
+    <h1>New Appointment</h1>
+    <%= form_with(model: @appointment, url: appointments_path, method: :post) do |f| %>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mb-3">
+            <%= f.label :appointment_time, class: "form-label" %>
+            <%= f.datetime_field :appointment_time, min: Time.now.strftime("%Y-%m-%dT%H:%M"), class: "form-control" %>
+          </div>
+          <div class="mb-3">
+            <%= f.label :company_id, "Select Company", class: "form-label" %>
+            <%= f.collection_select :company_id, Company.all, :id, :name, prompt: "Select a company", required: true, class: "form-select" %>
+          </div>
+          <div class="mb-3">
+            <%= f.label :user_id, "Select User", class: "form-label" %>
+            <%= f.collection_select :user_id, User.all, :id, :email, prompt: "Select a user", required: true, class: "form-select" %>
+          </div>
+          <div class="mb-3">
+            <%= f.label :duration, class: "form-label" %>
+            <%= f.select :duration, options_for_select(@duration_options, @appointment.duration), required: true, class: "form-select" %>
+          </div>
+          <div class="mb-3"></div> <!-- Empty div for spacing -->
+          <div class="actions">
+            <%= f.submit "Create Appointment", class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :user_id, "Select User" %><br>
-    <%= f.collection_select :user_id, User.all, :id, :email, prompt: "Select User", required: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :duration %><br>
-    <%= f.select :duration, options_for_select(@duration_options, @appointment.duration), required: true %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Create Appointment" %>
-  </div>
-  <%= link_to "Back Home", root_path %>
-<% end %>
+</div>

@@ -1,69 +1,78 @@
-<div id="<%= dom_id(client_intake_form) %>">
-  <div class="field">
-    <strong>Company:</strong> <%= client_intake_form.company.name %>
-  </div>
-  
-  <div class="field">
-    <strong>User:</strong>
-    <% if client_intake_form.user %>
-      <%= "#{client_intake_form.user_id} - #{client_intake_form.user.email}" %>
-    <% else %>
-      <em>
-        No user associated with this client intake form.
-        <%= link_to "Edit", edit_client_intake_form_path(@client_intake_form) %>
-      </em>
-    <% end %>
+<div id="<%= dom_id(client_intake_form) %>" class="mb-4 p-3">
+  <div class="row">
+    <div class="col">
+      <strong>Company:</strong> <%= client_intake_form.company.name %>
     </div>
-
-  <div class="field">
-    <strong>First name:</strong> <%= client_intake_form.first_name %>
-  </div>
-  
-  <div class="field">
-    <strong>Last name:</strong> <%= client_intake_form.last_name %>
-  </div>
-  
-  <div class="field">
-    <strong>Preferred name:</strong> <%= client_intake_form.preferred_name %>
-  </div>
-    
-  <div class="field">
-    <strong>Email address:</strong> <%= client_intake_form.email_address %>
+    <div class="col">
+      <strong>User:</strong>
+      <% if client_intake_form.user %>
+        <%= "#{client_intake_form.user_id} - #{client_intake_form.user.email}" %>
+      <% else %>
+        <em>
+          No user associated with this client intake form.
+          <%= link_to "Edit", edit_client_intake_form_path(@client_intake_form) %>
+        </em>
+      <% end %>
+    </div>
   </div>
 
-  <div class="field">
-    <strong>Gender:</strong> <%= client_intake_form.gender %>
+  <div class="row">
+    <div class="col">
+      <strong>First name:</strong> <%= client_intake_form.first_name %>
+    </div>
+    <div class="col">
+      <strong>Last name:</strong> <%= client_intake_form.last_name %>
+    </div>
   </div>
-  
-  <div class="field">
-    <strong>Phone number:</strong> <%= client_intake_form.phone_number %>
+
+  <div class="row">
+    <div class="col">
+      <strong>Preferred name:</strong> <%= client_intake_form.preferred_name %>
+    </div>
+    <div class="col">
+      <strong>Email address:</strong> <%= client_intake_form.email_address %>
+    </div>
   </div>
-  
-  <div class="field">
-    <strong>Date of birth:</strong> <%= client_intake_form.date_of_birth %>
+
+  <div class="row">
+    <div class="col">
+      <strong>Gender:</strong> <%= client_intake_form.gender %>
+    </div>
+    <div class="col">
+      <strong>Phone number:</strong> <%= client_intake_form.phone_number %>
+    </div>
   </div>
-  
-  <div class="field">
-    <strong>Address:</strong> <%= client_intake_form.address %>
+
+  <div class="row">
+    <div class="col">
+      <strong>Date of birth:</strong> <%= client_intake_form.date_of_birth %>
+    </div>
+    <div class="col">
+      <strong>Address:</strong> <%= client_intake_form.address %>
+    </div>
   </div>
-  
-  <div class="field">
-    <strong>City:</strong> <%= client_intake_form.city %>
+
+  <div class="row">
+    <div class="col">
+      <strong>City:</strong> <%= client_intake_form.city %>
+    </div>
+    <div class="col">
+      <strong>Province:</strong> <%= client_intake_form.province %>
+    </div>
   </div>
-  
-  <div class="field">
-    <strong>Province:</strong> <%= client_intake_form.province %>
+
+  <div class="row">
+    <div class="col">
+      <strong>Country:</strong> <%= client_intake_form.country %>
+    </div>
+    <div class="col">
+      <strong>Alternate phone number:</strong> <%= client_intake_form.alternate_phone_number %>
+    </div>
   </div>
-  
-  <div class="field">
-    <strong>Country:</strong> <%= client_intake_form.country %>
-  </div>
-  
-  <div class="field">
-    <strong>Alternate phone number:</strong> <%= client_intake_form.alternate_phone_number %>
-  </div>
-  
-  <div class="field">
-    <strong>Additional info:</strong> <%= client_intake_form.additional_info %>
+
+  <div class="row">
+    <div class="col">
+      <strong>Additional info:</strong> <%= client_intake_form.additional_info %>
+    </div>
   </div>
 </div>

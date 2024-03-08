@@ -1,10 +1,20 @@
-<h1>Client Intake Form - #<%= @client_intake_form.id %></h1>
+<div class="container">
+  <h1 class="d-inline">Client Intake Form - #<%= @client_intake_form.id %></h1>
 
-<%= render @client_intake_form %>
+  <div class="float-end mb-4">
+    <%= link_to "Back to Company", company_path(@client_intake_form.company_id), class: "btn btn-secondary ms-2" %>
+  </div>
 
-<div>
-  <br><br>
-  <%= link_to "Edit Form", edit_client_intake_form_path(@client_intake_form) %> |
-  <%= link_to "Back to Company", company_path(@client_intake_form.company_id) %><br><br>
-  <%= button_to "Delete Form", @client_intake_form, method: :delete, data: { turbo_confirm: "Are you sure you want to delete the form?" }  %>
+  <div class="mb-4 border p-3">
+    <%= render @client_intake_form %>
+  </div>
+
+  <div class="row">
+    <div class="mb-4">
+      <%= link_to "Edit Form", edit_client_intake_form_path(@client_intake_form), class: "btn btn-primary me-2" %>
+    </div>
+    <div class="col-md-10 text-left">
+      <%= button_to "Delete Form", @client_intake_form, method: :delete, data: { turbo_confirm: "Are you sure you want to delete the form?" }, class: "btn btn-danger" %>
+    </div>
+  </div>
 </div>

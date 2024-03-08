@@ -1,54 +1,67 @@
-<% if user_signed_in? %> 
-  <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
-<% else %>
-  <%= button_to "Sign in", new_user_session_path %> 
-<% end %>
-<h1>Hello <%= current_user.first_name %>!</h1>
-
-<% if @owned_companies.any? %>
-  <div class="owned-companies">
-    <h2>Companies you own:</h2>
-    <ul>
-      <% @owned_companies.each do |company| %>
-        <li><%= link_to company.name, company %></li>
-      <% end %>
-    </ul>
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Hello <%= current_user.first_name %>!</h1>
+    <% if user_signed_in? %> 
+      <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-danger mb-3" %> 
+    <% else %>
+      <%= button_to "Sign in", new_user_session_path, class: "btn btn-primary mb-3" %> 
+    <% end %>
   </div>
-<% else %>
-  <p>You don't own any companies yet.</p>
-<% end %>
-<br>
-<%= button_to "Create New Company", new_company_path, method: :get %>
-<br>
-<hr>
-<h2>Your Appointments:</h2>
-<% if @appointments.any? %>
-  <div>
-    <ul>
-      <% @appointments.each do |appointment| %>
-        <li><%= link_to appointment.appointment_time, appointment %>
-      <% end %>
-    </ul>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h2 class="card-title">Companies you own:</h2>
+          <% if @owned_companies.any? %>
+            <ul class="list-group">
+              <% @owned_companies.each do |company| %>
+                <li class="list-group-item"><%= link_to company.name, company %></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="empty-message">You don't own any companies yet.</p>
+          <% end %>
+          <%= button_to "Create New Company", new_company_path, method: :get, class: "btn btn-success mt-3" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h2 class="card-title">Your Appointments:</h2>
+          <% if @appointments.any? %>
+            <ul class="list-group">
+              <% @appointments.each do |appointment| %>
+                <li class="list-group-item"><%= link_to appointment.appointment_time, appointment %></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="empty-message">You don't have any appointments.</p>
+          <% end %>
+          <%= button_to "Create New Appointment", new_appointment_path, method: :get, class: "btn btn-primary mt-3" %>
+        </div>
+      </div>
+    </div>
   </div>
-<% else %>
-  <p>You don't have any appointment.</p>
-<% end %>
-<%= button_to "Create New Appointment", new_appointment_path, method: :get %>
 
-<br><hr><br>
-
-<h2>Companies you have a client intake form record:</h2>
-<% if @client_intake_forms.any? %>
-  <div>
-    <ul>
-      <% @client_intake_forms.each do |client_intake_form| %>
-        <li><%= link_to client_intake_form.company.name, client_intake_form.company %></li>
-      <% end %>
-    </ul>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Companies you have a client intake form record:</h2>
+          <% if @client_intake_forms.any? %>
+            <ul class="list-group">
+              <% @client_intake_forms.each do |client_intake_form| %>
+                <li class="list-group-item"><%= link_to client_intake_form.company.name, client_intake_form.company %></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="empty-message">You don't have any client intake forms associated with companies.</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-<% else %>
-  <p>You don't have any client intake forms associated with companies.</p>
-<% end %>
-
-
-<br>
+</div>
