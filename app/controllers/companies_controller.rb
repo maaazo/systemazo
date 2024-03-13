@@ -4,7 +4,11 @@ class CompaniesController < ApplicationController
 
   # GET /companies or /companies.json
   def index
-    @companies = Company.all
+    if params[:search]
+      @companies = Company.where("name LIKE ?", "%#{params[:search]}%")
+    else
+      @companies = Company.all
+    end
   end
 
   # GET /companies/1 or /companies/1.json
@@ -15,6 +19,7 @@ class CompaniesController < ApplicationController
     @clients = @company.memberships.where(role: 'client')
     @client_intake_forms = @company.client_intake_forms
     @employment_application_forms = @company.employment_application_forms.includes(:user)
+    @current_user_owns_company = @owners.exists?(user: current_user)
   end
 
   # GET /companies/new
