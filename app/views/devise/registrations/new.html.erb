@@ -16,7 +16,7 @@
 
     <div class="mb-3">
       <%= f.label :date_of_birth, "Date of birth <em>(You must be older than 18 years old to register)</em>".html_safe,  class: "form-label" %>
-      <%= f.date_field :date_of_birth, required: true, class: "form-control", value: 18.years.ago.to_date, min: 18.years.ago.to_date %>
+      <%= f.date_field :date_of_birth, required: true, class: "form-control", id: "user_date_of_birth" %>
     </div>
 
     <div class="mb-3">
