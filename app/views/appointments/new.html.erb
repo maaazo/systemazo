@@ -16,17 +16,17 @@
           </div>
           <div class="mb-3">
             <%= f.label :company_id, "Select Company", class: "form-label" %>
-            <%= f.collection_select :company_id, Company.all, :id, :name, prompt: "Select a company", required: true, class: "form-select" %>
+            <%= f.collection_select :company_id, @companies, :id, :name, { prompt: "Select a company" }, { required: true, class: "form-select" } %>
           </div>
+
           <div class="mb-3">
             <%= f.label :user_id, "Select User", class: "form-label" %>
-            <%= f.collection_select :user_id, User.all, :id, :email, prompt: "Select a user", required: true, class: "form-select" %>
+            <%= f.collection_select :user_id, @users, :id, :email, { prompt: "Select a user" }, required: true, class: "form-select" %>
           </div>
           <div class="mb-3">
             <%= f.label :duration, class: "form-label" %>
             <%= f.select :duration, options_for_select(@duration_options, @appointment.duration), required: true, class: "form-select" %>
           </div>
-          <div class="mb-3"></div> <!-- Empty div for spacing -->
           <div class="actions">
             <%= f.submit "Create Appointment", class: "btn btn-primary" %>
           </div>

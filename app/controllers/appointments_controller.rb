@@ -7,8 +7,10 @@ class AppointmentsController < ApplicationController
   end
 
   def new
-    @appointment = Appointment.new
+    @appointment = Appointment.new(company_id: params[:company_id], user_id: current_user.id)
     @duration_options = duration_options
+    @companies = Company.all
+    @users = User.all
   end
 
   def show; end
