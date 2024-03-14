@@ -13,6 +13,9 @@
         <p><strong>Address:</strong> <%= @company.address %></p>
         <p><strong>City:</strong> <%= @company.city %></p>
         <p><strong>Country:</strong> <%= @company.country %></p>
+        <% if !@current_user_owns_company %>
+          <%= link_to "Book Appointment", new_appointment_path(company_id: @company.id), class: "btn btn-primary mt-3" %>
+        <% end %>
       </div>
       <% if @current_user_owns_company %>
         <div class="col-md-6">
