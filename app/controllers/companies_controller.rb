@@ -20,6 +20,7 @@ class CompaniesController < ApplicationController
     @client_intake_forms = @company.client_intake_forms
     @employment_application_forms = @company.employment_application_forms.includes(:user)
     @current_user_owns_company = @owners.exists?(user: current_user)
+    @upcoming_appointments = @company.appointments.where('appointment_time > ?', Time.now).order(appointment_time: :asc)
   end
 
   # GET /companies/new
