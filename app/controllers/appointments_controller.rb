@@ -3,7 +3,14 @@ class AppointmentsController < ApplicationController
   before_action :set_appointment, only: %i[show edit update destroy]
 
   def index
-    @appointments = current_user.appointments
+    if params[:company_id]
+      @company = Company.find(params[:company_id])
+      @upcoming_appointments = @company.appointments.where('appointment_time >= ?', Time.now)
+      @past_appointments = @company.appointments.where('appointment_time < ?', Time.now)
+    else
+      @upcoming_appointments = current_user.appointments.where('appointment_time >= ?', Time.now)
+      @past_appointments = current_user.appointments.where('appointment_time < ?', Time.now)
+    end
   end
 
   def new
@@ -22,7 +29,8 @@ class AppointmentsController < ApplicationController
       if @appointment.save
         redirect_to @appointment, notice: 'Appointment was successfully created.'
       else
-        render :new
+        @error_message = @appointment.errors.full_messages.first
+        redirect_to new_appointment_path, alert: @error_message
       end
     rescue ActionController::ParameterMissing => e
       flash.now[:alert] = "Missing parameter: #{e.param}"
