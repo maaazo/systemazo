@@ -5,3 +5,7 @@ body {
 .client-intake-form:hover, .employment-application-form:hover{
   background-color: rgba(9, 3, 124, 0.049);
 }
+
+.bg-light-blue {
+  background-color: rgba(132, 221, 251, 0.454); /* Light blue color */
+}
