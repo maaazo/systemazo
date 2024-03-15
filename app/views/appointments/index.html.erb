@@ -6,10 +6,11 @@
 
   <!-- Your Appointments -->
   <div class="mb-4 border p-3">
-    <h1>Your Appointments</h1>
+    <h1>Appointments</h1>
 
-    <% if @appointments.any? %>
-      <% @appointments.each do |appointment| %>
+    <% if @upcoming_appointments.any? %>
+      <h2>Upcoming Appointments</h2>
+      <% @upcoming_appointments.each do |appointment| %>
         <div class="mb-4">
           <ul class="list-unstyled">
             <li><strong>Company:</strong> <%= appointment.company.name %></li>
@@ -26,7 +27,29 @@
         </div>
       <% end %>
     <% else %>
-      <p>No appointments found.</p>
+      <p>No upcoming appointments found.</p>
+    <% end %>
+
+    <% if @past_appointments.any? %>
+      <h2>Past Appointments</h2>
+      <% @past_appointments.each do |appointment| %>
+        <div class="mb-4">
+          <ul class="list-unstyled">
+            <li><strong>Company:</strong> <%= appointment.company.name %></li>
+            <li><strong>User:</strong> <%= appointment.user.email %></li>
+            <li><strong>Date and Time:</strong> <%= appointment.appointment_time.strftime("%Y-%m-%d %H:%M:%S") %></li>
+            <li><strong>Status:</strong> <%= appointment.status %></li>
+            <li><strong>Duration:</strong> <%= appointment.duration %> minutes</li>
+            <li><strong>Price:</strong> <%= appointment.price %></li>
+          </ul>
+          <div class="btn-group mt-2" role="group">
+            <%= link_to "Edit", edit_appointment_path(appointment), class: "btn btn-secondary me-2" %>
+            <%= button_to "Delete", appointment, method: :delete, data: { turbo_confirm: "Are you sure you want to delete this appointment?" }, class: "btn btn-danger" %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p>No past appointments found.</p>
     <% end %>
   </div>
 </div>

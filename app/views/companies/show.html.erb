@@ -13,6 +13,9 @@
         <p><strong>Address:</strong> <%= @company.address %></p>
         <p><strong>City:</strong> <%= @company.city %></p>
         <p><strong>Country:</strong> <%= @company.country %></p>
+        <% if !@current_user_owns_company %>
+          <%= link_to "Book Appointment", new_appointment_path(company_id: @company.id), class: "btn btn-primary mt-3" %>
+        <% end %>
       </div>
       <% if @current_user_owns_company %>
         <div class="col-md-6">
@@ -23,6 +26,16 @@
   </div>
   
   <% if @current_user_owns_company %>
+    <!-- Appointments Section -->
+    <div class="mb-4 border p-3">
+      <h2>Upcoming Appointments</h2>
+      <% @upcoming_appointments.each do |appointment| %>
+        <p><%= appointment.appointment_time %> - <%= appointment.user.email %></p>
+      <% end %>
+      <%= link_to "Book Appointment", new_appointment_path(company_id: @company.id), class: "btn btn-primary mt-3" %>
+      <%= link_to "View All Appointments", company_appointments_path(@company), class: "btn btn-primary mt-3" %>
+    </div>
+
     <!-- Memberships -->
     <div class="mb-4 border p-3">
       <h2>Memberships</h2>
