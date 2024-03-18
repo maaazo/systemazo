@@ -10,6 +10,7 @@
   </div>
 
   <div class="row">
+    <%= button_to "Generate PDF", generate_pdf_client_intake_form_path(@client_intake_form), method: :get, class: "btn btn-primary", form: {target: '_blank'} %>
     <div class="mb-4">
       <%= link_to "Edit Form", edit_client_intake_form_path(@client_intake_form), class: "btn btn-primary me-2" %>
     </div>
