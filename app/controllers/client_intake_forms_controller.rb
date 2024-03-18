@@ -1,4 +1,5 @@
 class ClientIntakeFormsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_client_intake_form, only: %i[show edit update destroy]
 
   # GET /client_intake_forms or /client_intake_forms.json
