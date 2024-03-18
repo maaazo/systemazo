@@ -10,11 +10,13 @@
   </div>
 
   <div class="row">
-    <%= button_to "Generate PDF", generate_pdf_client_intake_form_path(@client_intake_form), method: :get, class: "btn btn-primary", form: {target: '_blank'} %>
-    <div class="mb-4">
+    <div class="col-2">
+      <%= button_to "Generate PDF", generate_pdf_client_intake_form_path(@client_intake_form), method: :get, class: "btn btn-primary", form: {target: '_blank'} %>
+    </div>
+    <div class="col-2">
       <%= link_to "Edit Form", edit_client_intake_form_path(@client_intake_form), class: "btn btn-primary me-2" %>
     </div>
-    <div class="col-md-10 text-left">
+    <div class="col-2">
       <%= button_to "Delete Form", @client_intake_form, method: :delete, data: { turbo_confirm: "Are you sure you want to delete the form?" }, class: "btn btn-danger" %>
     </div>
   </div>
