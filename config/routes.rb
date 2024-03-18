@@ -3,10 +3,14 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
   resources :appointments
-  resources :client_intake_forms
+  resources :client_intake_forms do
+    member do
+      get 'generate_pdf'
+    end
+  end
   resources :companies do
     resources :appointments
   end
   resources :memberships, only: %i[new create edit patch update]
-  resources :employment_application_forms, path: "employees"
+  resources :employment_application_forms, path: 'employees'
 end
