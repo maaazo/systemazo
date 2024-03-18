@@ -68,6 +68,16 @@ class ClientIntakeFormsController < ApplicationController
     end
   end
 
+  def generate_pdf
+    @client_intake_form = ClientIntakeForm.find(params[:id])
+
+    pdf = ClientIntakeFormPdf.new(@client_intake_form)
+    send_data pdf.render,
+              filename: 'client_intake_form.pdf',
+              type: 'application/pdf',
+              disposition: 'inline'
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
